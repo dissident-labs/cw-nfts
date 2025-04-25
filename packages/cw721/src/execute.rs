@@ -595,7 +595,7 @@ pub fn migrate(
     let response = Response::<Empty>::default();
     // first migrate legacy data ...
     let response = migrate_legacy_minter_and_creator(deps.storage, deps.api, &env, &msg, response)?;
-    let response = migrate_legacy_collection_info(deps.storage, &env, &msg, response)?;
+    //let response = migrate_legacy_collection_info(deps.storage, &env, &msg, response)?;
     // ... then migrate
     let response = migrate_version(deps.storage, contract_name, contract_version, response)?;
     // ... and update creator and minter AFTER legacy migration
@@ -701,6 +701,7 @@ pub fn migrate_legacy_minter_and_creator(
     ))
 }
 
+/*
 /// Migrates only in case collection_info is not present
 pub fn migrate_legacy_collection_info(
     storage: &mut dyn Storage,
@@ -727,7 +728,7 @@ pub fn migrate_legacy_collection_info(
                 .add_attribute("migrated collection symbol", legacy_collection_info.symbol))
         }
     }
-}
+}*/
 
 impl<'a>
     Cw721Execute<
